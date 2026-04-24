@@ -24,16 +24,20 @@ def center_text(text, width):
     return '\n'.join(line.center(width) for line in text.splitlines())
 
 ascii_banner = r"""
- _   _ _ _   _                 _         ___________   _                     _             
-| | | | | | (_)               | |       |_   _| ___ \ | |                   | |            
-| | | | | |_ _ _ __ ___   __ _| |_ ___    | | | |_/ / | |     ___   ___ __ _| |_ ___  _ __ 
-| | | | | __| | '_ ` _ \ / _` | __/ _ \   | | |  __/  | |    / _ \ / __/ _` | __/ _ \| '__|
-| |_| | | |_| | | | | | | (_| | ||  __/  _| |_| |     | |___| (_) | (_| (_| | || (_) | |   
- \___/|_|\__|_|_| |_| |_|\__,_|\__\___|  \___/\_|     \_____/\___/ \___\__,_|\__\___/|_|   
+ /$$   /$$       /$$$$$$$$ /$$                 /$$                    
+| $$  | $$      | $$_____/|__/                | $$                    
+| $$  | $$      | $$       /$$ /$$$$$$$   /$$$$$$$  /$$$$$$   /$$$$$$ 
+| $$  | $$      | $$$$$   | $$| $$__  $$ /$$__  $$ /$$__  $$ /$$__  $$
+| $$  | $$      | $$__/   | $$| $$  \ $$| $$  | $$| $$$$$$$$| $$  \__/
+| $$  | $$      | $$      | $$| $$  | $$| $$  | $$| $$_____/| $$      
+|  $$$$$$/      | $$      | $$| $$  | $$|  $$$$$$$|  $$$$$$$| $$      
+ \______/       |__/      |__/|__/  |__/ \_______/ \_______/|__/      
+                                                                      
+                                                                      
+                                                                      
                                                                                           
                                                                                           
 """
-
 def get_ipinfo_data(ip):
     try:
         print("\nDelving through the vast internet stratosphere to locate the IP...")
@@ -64,14 +68,20 @@ def main():
     width = get_terminal_width()
     red_banner = Fore.RED + center_text(wrap_banner_lines(ascii_banner, width), width)
     credit = Fore.RED + center_text("created by dzuma youtube.com/@dzumq", width)
-
     print(red_banner)
     print(credit + "\n")
-
-    ip = input("Enter IP address to geo-locate: ").strip()
-    result = get_ipinfo_data(ip)
-    display_result(result)
-
+    while True:
+    
+      ip = input("Enter IP address: ").strip()
+      result = get_ipinfo_data(ip)
+      display_result(result)
+      valid = True
+      for char in ip:
+          if char.isalpha():
+             valid = False
+             
+      if valid:
+         break
+      
 if __name__ == "__main__":
     main()
-
